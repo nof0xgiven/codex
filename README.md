@@ -56,9 +56,42 @@ You can also use Codex with an API key, but this requires [additional setup](htt
 - [**Installing & building**](./docs/install.md)
 - [**Open source fund**](./docs/open-source-fund.md)
 
-## Fork notes
+---
 
-This fork includes local changes. See `docs/fork-updates.md` for a concise list
-and rebase workflow.
+## About This Fork
+
+This is a community fork of [OpenAI Codex CLI](https://github.com/openai/codex) that adds **service tier configuration** for API-based usage.
+
+### What's Added
+
+| Feature | Description |
+|---------|-------------|
+| `service_tier` config | Set `service_tier = "priority"` in `config.toml` to enable priority processing for API requests |
+| fs2 file locking | Replaced unstable file locking with the stable `fs2` crate |
+
+### Usage
+
+Add to your `~/.codex/config.toml`:
+
+```toml
+service_tier = "priority"
+```
+
+This passes `service_tier` through to OpenAI API requests (Responses API and Chat Completions).
+
+### Staying Updated
+
+This fork is regularly rebased onto upstream. See [docs/fork-updates.md](./docs/fork-updates.md) for the changelog and rebase workflow.
+
+### Building from Source
+
+```shell
+cd codex-rs
+cargo build -p codex-cli --release
+```
+
+Binary output: `codex-rs/target/release/codex`
+
+---
 
 This repository is licensed under the [Apache-2.0 License](LICENSE).
