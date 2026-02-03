@@ -36,7 +36,7 @@ pub async fn maybe_migrate_personality(
     let config_profile = config_toml
         .get_config_profile(None)
         .map_err(|err| io::Error::new(io::ErrorKind::InvalidData, err))?;
-    if config_toml.personality.is_some() || config_profile.personality.is_some() {
+    if config_toml.personality.is_some() || config_profile.model_personality.is_some() {
         create_marker(&marker_path).await?;
         return Ok(PersonalityMigrationStatus::SkippedExplicitPersonality);
     }

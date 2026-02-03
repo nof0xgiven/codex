@@ -1553,7 +1553,7 @@ impl Config {
         let base_instructions = base_instructions.or(file_base_instructions);
         let developer_instructions = developer_instructions.or(cfg.developer_instructions);
         let personality = personality
-            .or(config_profile.personality)
+            .or(config_profile.model_personality)
             .or(cfg.personality)
             .or_else(|| {
                 features
@@ -3879,8 +3879,8 @@ model_verbosity = "high"
                 model_reasoning_summary: ReasoningSummary::Detailed,
                 model_supports_reasoning_summaries: None,
                 model_verbosity: None,
-service_tier: None,
-                model_personality: Some(Personality::Friendly),
+                service_tier: None,
+                personality: Some(Personality::Friendly),
                 chatgpt_base_url: "https://chatgpt.com/backend-api/".to_string(),
                 base_instructions: None,
                 developer_instructions: None,
@@ -3966,8 +3966,8 @@ service_tier: None,
             model_reasoning_summary: ReasoningSummary::default(),
             model_supports_reasoning_summaries: None,
             model_verbosity: None,
-service_tier: None,
-            model_personality: Some(Personality::Friendly),
+            service_tier: None,
+            personality: Some(Personality::Friendly),
             chatgpt_base_url: "https://chatgpt.com/backend-api/".to_string(),
             base_instructions: None,
             developer_instructions: None,
@@ -4068,8 +4068,8 @@ service_tier: None,
             model_reasoning_summary: ReasoningSummary::default(),
             model_supports_reasoning_summaries: None,
             model_verbosity: None,
-service_tier: None,
-            model_personality: Some(Personality::Friendly),
+            service_tier: None,
+            personality: Some(Personality::Friendly),
             chatgpt_base_url: "https://chatgpt.com/backend-api/".to_string(),
             base_instructions: None,
             developer_instructions: None,
@@ -4156,8 +4156,8 @@ service_tier: None,
             model_reasoning_summary: ReasoningSummary::Detailed,
             model_supports_reasoning_summaries: None,
             model_verbosity: Some(Verbosity::High),
-service_tier: None,
-            model_personality: Some(Personality::Friendly),
+            service_tier: None,
+            personality: Some(Personality::Friendly),
             chatgpt_base_url: "https://chatgpt.com/backend-api/".to_string(),
             base_instructions: None,
             developer_instructions: None,

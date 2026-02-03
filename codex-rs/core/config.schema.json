@@ -264,6 +264,9 @@
           ],
           "description": "Optional path to a file containing model instructions."
         },
+        "model_personality": {
+          "$ref": "#/definitions/Personality"
+        },
         "model_provider": {
           "description": "The key in the `model_providers` map identifying the [`ModelProviderInfo`] to use.",
           "type": "string"
@@ -279,9 +282,6 @@
         },
         "oss_provider": {
           "type": "string"
-        },
-        "personality": {
-          "$ref": "#/definitions/Personality"
         },
         "sandbox_mode": {
           "$ref": "#/definitions/SandboxMode"

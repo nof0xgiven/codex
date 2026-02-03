@@ -31,9 +31,9 @@ local-only.
 
 Rebuild when you want the latest fork changes in the binary:
 
-- Use the pinned toolchain: `rust-toolchain.toml` is set to `1.92.0`.
+- Use the pinned toolchain: `rust-toolchain.toml` is set to `1.93.0`.
 - Build command (from `codex-rs`):
-  - `cargo +1.92.0 build -p codex-cli`
+  - `cargo +1.93.0 build -p codex-cli`
 
 This updates `codex-rs/target/debug/codex`.
 
@@ -71,9 +71,9 @@ After upstream merges or local changes:
 
 - `just fmt` (from `codex-rs`)
 - Build `codex-cli`:
-  - `cargo +1.92.0 build -p codex-cli`
+  - `cargo +1.93.0 build -p codex-cli`
 - Run targeted tests when feasible:
-  - Example: `cargo +1.92.0 test -p codex-core`
+  - Example: `cargo +1.93.0 test -p codex-core`
 
 If a build fails due to file-locking APIs, use `fs2`-based locks (stable) instead
 of the unstable `std::fs` file lock APIs.
