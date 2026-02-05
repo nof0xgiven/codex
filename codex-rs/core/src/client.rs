@@ -49,6 +49,7 @@ use codex_otel::OtelManager;
 
 use codex_protocol::ThreadId;
 use codex_protocol::config_types::ReasoningSummary as ReasoningSummaryConfig;
+use codex_protocol::config_types::ServiceTier;
 use codex_protocol::config_types::Verbosity as VerbosityConfig;
 use codex_protocol::models::ResponseItem;
 use codex_protocol::openai_models::ModelInfo;
@@ -99,6 +100,7 @@ struct ModelClientState {
     provider: ModelProviderInfo,
     session_source: SessionSource,
     model_verbosity: Option<VerbosityConfig>,
+    service_tier: Option<ServiceTier>,
     enable_responses_websockets: bool,
     enable_request_compression: bool,
     include_timing_metrics: bool,
@@ -167,6 +169,7 @@ impl ModelClient {
         provider: ModelProviderInfo,
         session_source: SessionSource,
         model_verbosity: Option<VerbosityConfig>,
+        service_tier: Option<ServiceTier>,
         enable_responses_websockets: bool,
         enable_request_compression: bool,
         include_timing_metrics: bool,
@@ -179,6 +182,7 @@ impl ModelClient {
                 provider,
                 session_source,
                 model_verbosity,
+                service_tier,
                 enable_responses_websockets,
                 enable_request_compression,
                 include_timing_metrics,
@@ -400,7 +404,7 @@ impl ModelClientSession {
             prompt_cache_key: Some(conversation_id.clone()),
             text,
             store_override: None,
-            service_tier: self.client.state.config.service_tier,
+            service_tier: self.client.state.service_tier,
             conversation_id: Some(conversation_id),
             session_source: Some(self.client.state.session_source.clone()),
             extra_headers: build_responses_headers(
@@ -447,6 +451,7 @@ impl ModelClientSession {
             prompt_cache_key,
             text,
             store_override,
+            service_tier,
             ..
         } = options;
 
@@ -464,6 +469,7 @@ impl ModelClientSession {
             include: include.clone(),
             prompt_cache_key: prompt_cache_key.clone(),
             text: text.clone(),
+            service_tier: *service_tier,
         };
 
         ResponsesWsRequest::ResponseCreate(payload)
