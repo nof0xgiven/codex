@@ -57,3 +57,27 @@ You can also use Codex with an API key, but this requires [additional setup](htt
 - [**Open source fund**](./docs/open-source-fund.md)
 
 This repository is licensed under the [Apache-2.0 License](LICENSE).
+
+---
+
+## About This Fork
+
+This is a community fork of [OpenAI Codex CLI](https://github.com/openai/codex) that adds **service tier configuration** for API-based usage.
+
+### What's Added
+
+| Feature | Description |
+|---------|-------------|
+| `service_tier` config | Set `service_tier = "priority"` in `config.toml` to route requests via priority processing |
+
+### Usage
+
+Add to your `~/.codex/config.toml`:
+
+```toml
+service_tier = "priority"
+```
+
+Available values: `auto`, `default`, `flex`, `priority`.
+
+See [docs/fork-updates.md](./docs/fork-updates.md) for full changelog and maintenance notes.
