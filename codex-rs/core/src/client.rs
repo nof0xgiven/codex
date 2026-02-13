@@ -63,6 +63,7 @@ use codex_otel::OtelManager;
 
 use codex_protocol::ThreadId;
 use codex_protocol::config_types::ReasoningSummary as ReasoningSummaryConfig;
+use codex_protocol::config_types::ServiceTier;
 use codex_protocol::config_types::Verbosity as VerbosityConfig;
 use codex_protocol::models::ResponseItem;
 use codex_protocol::openai_models::ModelInfo;
@@ -116,6 +117,7 @@ struct ModelClientState {
     provider: ModelProviderInfo,
     session_source: SessionSource,
     model_verbosity: Option<VerbosityConfig>,
+    service_tier: Option<ServiceTier>,
     enable_responses_websockets: bool,
     enable_responses_websockets_v2: bool,
     enable_request_compression: bool,
@@ -206,6 +208,7 @@ impl ModelClient {
         provider: ModelProviderInfo,
         session_source: SessionSource,
         model_verbosity: Option<VerbosityConfig>,
+        service_tier: Option<ServiceTier>,
         enable_responses_websockets: bool,
         enable_responses_websockets_v2: bool,
         enable_request_compression: bool,
@@ -219,6 +222,7 @@ impl ModelClient {
                 provider,
                 session_source,
                 model_verbosity,
+                service_tier,
                 enable_responses_websockets,
                 enable_responses_websockets_v2,
                 enable_request_compression,
@@ -510,6 +514,7 @@ impl ModelClientSession {
             store: provider.is_azure_responses_endpoint(),
             stream: true,
             include,
+            service_tier: self.client.state.service_tier,
             prompt_cache_key,
             text,
         };
@@ -1177,6 +1182,7 @@ mod tests {
             ThreadId::new(),
             provider,
             session_source,
+            None,
             None,
             false,
             false,

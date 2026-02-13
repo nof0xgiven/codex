@@ -335,6 +335,9 @@
         "sandbox_mode": {
           "$ref": "#/definitions/SandboxMode"
         },
+        "service_tier": {
+          "$ref": "#/definitions/ServiceTier"
+        },
         "tools_view_image": {
           "type": "boolean"
         },
@@ -953,6 +956,16 @@
         }
       },
       "type": "object"
+    },
+    "ServiceTier": {
+      "description": "Controls OpenAI service tier routing (e.g., priority processing).",
+      "enum": [
+        "auto",
+        "default",
+        "flex",
+        "priority"
+      ],
+      "type": "string"
     },
     "ShellEnvironmentPolicyInherit": {
       "oneOf": [
@@ -1627,6 +1640,14 @@
         }
       ],
       "description": "Sandbox configuration to apply if `sandbox` is `WorkspaceWrite`."
+    },
+    "service_tier": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ServiceTier"
+        }
+      ],
+      "description": "Optional OpenAI service tier override (e.g., priority processing)."
     },
     "shell_environment_policy": {
       "allOf": [
